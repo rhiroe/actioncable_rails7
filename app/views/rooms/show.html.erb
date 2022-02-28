@@ -1,0 +1,13 @@
+<h1>Chat room</h1>
+
+<%= turbo_stream_from @room %>
+
+<div id='messages'>
+  <%= render @room.messages %>
+</div>
+
+<%= form_with(model: [@room, @room.messages.new], data: { controller: "form", action: "turbo:submit-end->form#reset" }) do |f| %>
+  <%= f.label :content, 'Say something:' %>
+  <%= f.text_field :content %>
+  <%= f.submit %>
+<% end %>
